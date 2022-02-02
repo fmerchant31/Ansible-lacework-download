@@ -1,0 +1,8 @@
+---
+- name: Downloading lacework package
+  get_url:
+    url: https://packages.lacework.net/DEB/lacework_4.1.62_amd64.deb
+    dest: /home/devx/Desktop/opt/
+- name: Installing lacework package
+  command: dpkg -i /home/devx/Desktop/opt/lacework_4.1.62_amd64.deb
+  notify: starting   

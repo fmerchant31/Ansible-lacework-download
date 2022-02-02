@@ -1,0 +1,6 @@
+---
+- name: starting
+  service:
+    name: datacollector
+    state: started
+
