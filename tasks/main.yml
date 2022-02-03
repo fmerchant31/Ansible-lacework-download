@@ -1,9 +1,11 @@
 ---
 - name: Downloading lacework package
+  become: yes
   get_url:
     url: https://packages.lacework.net/DEB/lacework_4.1.62_amd64.deb
     dest: /var/lib/jenkins/opt
 - name: Installing lacework package
-  command: sudo dpkg -i /var/lib/jenkins/opt/lacework_4.1.62_amd64.deb
+  become: yes
+  command: dpkg -i /var/lib/jenkins/opt/lacework_4.1.62_amd64.deb
   notify: starting
  
