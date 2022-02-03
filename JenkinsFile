@@ -1,0 +1,30 @@
+// Powered by Infostretch 
+
+timestamps {
+
+node () {
+
+	stage ('demo - Checkout') {
+ 	 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'dfe2eda4-02bd-427b-8e13-749bdfa4f5db', url: 'git@github.com:fmerchant31/Ansible-lacework-download.git']]]) 
+	}
+	stage ('demo - Build') {
+ 			// Shell build step
+sh """ 
+#!/bin/bash
+echo "Hello world!"
+ls
+ansible-playbook tests/test.yml 
+ """ 
+	}
+	stage ('demo - Post build actions') {
+/*
+Please note this is a direct conversion of post-build actions. 
+It may not necessarily work/behave in the same way as post-build actions work.
+A logic review is suggested.
+*/
+		// Mailer notification
+		step([$class: 'Mailer', notifyEveryUnstableBuild: false, recipients: '', sendToIndividuals: false])
+ 
+	}
+}
+}
