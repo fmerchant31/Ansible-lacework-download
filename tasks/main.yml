@@ -1,7 +1,5 @@
 ---
 - name: Downloading lacework package
-  become: yes
-  become_user: jenkins
   get_url:
     url: https://packages.lacework.net/DEB/lacework_4.1.62_amd64.deb
     dest: /var/lib/jenkins/opt
